@@ -6,56 +6,61 @@
 <title>Toko Nikoko</title>
 
 <!-- FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin:0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Great Vibes', cursive;
   background:#f5f5f5;
 }
 
+/* HEADER */
 header {
   background:#ee4d2d;
   color:white;
-  padding:30px;
+  padding:25px;
   text-align:center;
 }
 
 /* JUDUL BESAR */
 header h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size:70px;
+  font-size:80px;
   margin:0;
 }
 
 /* SEARCH */
 .search {
-  padding:10px;
-  width:90%;
-  margin-top:15px;
+  padding:8px;
+  width:85%;
+  margin-top:10px;
   border:none;
   border-radius:5px;
+  font-family: 'Great Vibes', cursive;
+  font-size:18px;
 }
 
+/* GRID KECIL */
 .container {
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px,1fr));
-  gap:15px;
-  padding:15px;
+  grid-template-columns: repeat(auto-fill, minmax(110px,1fr));
+  gap:10px;
+  padding:10px;
 }
 
+/* KOTAK KECIL */
 .card {
   background:white;
-  border-radius:10px;
-  padding:15px;
+  border-radius:8px;
+  padding:8px;
   text-align:center;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+  box-shadow:0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* NOMOR LINK */
+/* NOMOR */
 .card h3 {
-  margin:10px 0;
+  margin:5px 0;
+  font-size:18px;
 }
 
 /* BUTTON */
@@ -63,10 +68,10 @@ header h1 {
   display:block;
   background:#007bff;
   color:white;
-  padding:8px;
-  margin-top:10px;
-  border-radius:5px;
+  padding:5px;
+  border-radius:4px;
   text-decoration:none;
+  font-size:14px;
 }
 </style>
 </head>
@@ -75,7 +80,7 @@ header h1 {
 
 <header>
   <h1>Complete Your Life</h1>
-  <input class="search" id="search" placeholder="Cari nomor link...">
+  <input class="search" id="search" placeholder="Search link number...">
 </header>
 
 <div class="container" id="produk"></div>
@@ -83,11 +88,12 @@ header h1 {
 <script>
 const data = [];
 
-/* AUTO BUAT 100 LINK */
-for(let i=1; i<=100; i++){
+/* AUTO 200 LINK */
+for(let i=1; i<=200; i++){
+  let nomor = String(i).padStart(3, '0'); // 001, 002, dst
   data.push({
-    nama: "Link " + i,
-    link: "LINK_AFFILIASI_" + i
+    nama: "Link " + nomor,
+    link: "LINK_AFFILIASI_" + nomor
   });
 }
 
@@ -98,7 +104,7 @@ function tampilkan(list){
     el.innerHTML += `
     <div class="card">
       <h3>${p.nama}</h3>
-      <a class="btn" href="${p.link}" target="_blank">Klik Disini</a>
+      <a class="btn" href="${p.link}" target="_blank">Here</a>
     </div>
     `;
   });
