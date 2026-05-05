@@ -1,16 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <title>Nikoko</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toko Nikoko - Promo Shopee</title>
+
+<style>
+body {
+  margin:0;
+  font-family: Arial;
+  background:#f5f5f5;
+}
+
+header {
+  background:#ee4d2d;
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+
+.search {
+  padding:10px;
+  width:90%;
+  margin-top:10px;
+  border:none;
+  border-radius:5px;
+}
+
+.container {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
+  gap:15px;
+  padding:15px;
+}
+
+.card {
+  background:white;
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width:100%;
+  border-radius:10px;
+}
+
+.price {
+  color:#ee4d2d;
+  font-weight:bold;
+}
+
+.btn {
+  display:block;
+  background:#28a745;
+  color:white;
+  padding:8px;
+  margin-top:8px;
+  border-radius:5px;
+  text-decoration:none;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Nikoko 🎉</h1>
-<p>Complete Your Life</p>
+<header>
+  <h2>🔥 Promo Shopee Terbaik</h2>
+  <input class="search" id="search" placeholder="Cari produk...">
+</header>
 
-<a href="https://shopee.co.id" target="_blank">
-  <button>Beli di Shopee</button>
-</a>
+<div class="container" id="produk"></div>
+
+<script>
+const data = [
+  {
+    nama:"Jam Tangan Pria",
+    harga:"Rp99.000",
+    gambar:"https://via.placeholder.com/200",
+    link:"LINK_AFFILIASI_1"
+  },
+  {
+    nama:"Headset Gaming",
+    harga:"Rp250.000",
+    gambar:"https://via.placeholder.com/200",
+    link:"LINK_AFFILIASI_2"
+  },
+  {
+    nama:"Speaker Bluetooth",
+    harga:"Rp150.000",
+    gambar:"https://via.placeholder.com/200",
+    link:"LINK_AFFILIASI_3"
+  },
+  {
+    nama:"Power Bank 10000mAh",
+    harga:"Rp120.000",
+    gambar:"https://via.placeholder.com/200",
+    link:"LINK_AFFILIASI_4"
+  }
+];
+
+function tampilkan(list){
+  const el = document.getElementById("produk");
+  el.innerHTML="";
+  list.forEach(p=>{
+    el.innerHTML += `
+    <div class="card">
+      <img src="${p.gambar}">
+      <h4>${p.nama}</h4>
+      <p class="price">${p.harga}</p>
+      <a class="btn" href="${p.link}" target="_blank">Beli di Shopee</a>
+    </div>
+    `;
+  });
+}
+
+document.getElementById("search").addEventListener("keyup", function(){
+  let k = this.value.toLowerCase();
+  tampilkan(data.filter(p=>p.nama.toLowerCase().includes(k)));
+});
+
+tampilkan(data);
+</script>
 
 </body>
 </html>
