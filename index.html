@@ -25,7 +25,7 @@ header {
 
 /* JUDUL BESAR */
 header h1 {
-  font-size:80px;
+  font-size:85px;
   margin:0;
 }
 
@@ -40,27 +40,34 @@ header h1 {
   font-size:18px;
 }
 
-/* GRID KECIL */
+/* GRID RAPAT */
 .container {
   display:grid;
   grid-template-columns: repeat(auto-fill, minmax(110px,1fr));
-  gap:10px;
+  gap:8px;
   padding:10px;
 }
 
 /* KOTAK KECIL */
 .card {
   background:white;
-  border-radius:8px;
-  padding:8px;
+  border-radius:6px;
+  padding:6px;
   text-align:center;
-  box-shadow:0 2px 4px rgba(0,0,0,0.1);
+  box-shadow:0 1px 3px rgba(0,0,0,0.1);
 }
 
 /* NOMOR */
 .card h3 {
-  margin:5px 0;
+  margin:4px 0;
   font-size:18px;
+}
+
+/* DESKRIPSI KECIL */
+.desc {
+  font-size:12px;
+  margin:2px 0;
+  color:#555;
 }
 
 /* BUTTON */
@@ -68,10 +75,11 @@ header h1 {
   display:block;
   background:#007bff;
   color:white;
-  padding:5px;
+  padding:4px;
   border-radius:4px;
   text-decoration:none;
-  font-size:14px;
+  font-size:12px;
+  margin-top:4px;
 }
 </style>
 </head>
@@ -80,7 +88,7 @@ header h1 {
 
 <header>
   <h1>Complete Your Life</h1>
-  <input class="search" id="search" placeholder="Search link number...">
+  <input class="search" id="search" placeholder="Cari nomor...">
 </header>
 
 <div class="container" id="produk"></div>
@@ -90,9 +98,10 @@ const data = [];
 
 /* AUTO 200 LINK */
 for(let i=1; i<=200; i++){
-  let nomor = String(i).padStart(3, '0'); // 001, 002, dst
+  let nomor = String(i).padStart(3, '0');
   data.push({
-    nama: "Link " + nomor,
+    nama: nomor,
+    desc: "Deskripsi produk " + nomor,
     link: "LINK_AFFILIASI_" + nomor
   });
 }
@@ -104,7 +113,8 @@ function tampilkan(list){
     el.innerHTML += `
     <div class="card">
       <h3>${p.nama}</h3>
-      <a class="btn" href="${p.link}" target="_blank">Here</a>
+      <div class="desc">${p.desc}</div>
+      <a class="btn" href="${p.link}" target="_blank">Klik</a>
     </div>
     `;
   });
@@ -112,7 +122,7 @@ function tampilkan(list){
 
 document.getElementById("search").addEventListener("keyup", function(){
   let k = this.value.toLowerCase();
-  tampilkan(data.filter(p=>p.nama.toLowerCase().includes(k)));
+  tampilkan(data.filter(p=>p.nama.includes(k)));
 });
 
 tampilkan(data);
