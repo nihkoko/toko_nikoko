@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Toko Nikoko</title>
 
-<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
@@ -15,7 +14,6 @@ body {
   background:#f5f5f5;
 }
 
-/* HEADER */
 header {
   background:#ee4d2d;
   color:white;
@@ -23,32 +21,18 @@ header {
   text-align:center;
 }
 
-/* JUDUL BESAR */
 header h1 {
   font-size:85px;
   margin:0;
 }
 
-/* SEARCH */
-.search {
-  padding:8px;
-  width:85%;
-  margin-top:10px;
-  border:none;
-  border-radius:5px;
-  font-family: 'Great Vibes', cursive;
-  font-size:18px;
-}
-
-/* GRID RAPAT */
 .container {
   display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
   gap:8px;
   padding:10px;
 }
 
-/* KOTAK KECIL */
 .card {
   background:white;
   border-radius:6px;
@@ -57,20 +41,16 @@ header h1 {
   box-shadow:0 1px 3px rgba(0,0,0,0.1);
 }
 
-/* NOMOR */
 .card h3 {
   margin:4px 0;
   font-size:18px;
 }
 
-/* DESKRIPSI KECIL */
 .desc {
-  font-size:12px;
-  margin:2px 0;
+  font-size:11px;
   color:#555;
 }
 
-/* BUTTON */
 .btn {
   display:block;
   background:#007bff;
@@ -88,28 +68,34 @@ header h1 {
 
 <header>
   <h1>Complete Your Life</h1>
-  <input class="search" id="search" placeholder="Cari nomor...">
 </header>
 
 <div class="container" id="produk"></div>
 
 <script>
-const data = [];
+const data = [
 
-/* AUTO 200 LINK */
-for(let i=1; i<=200; i++){
-  let nomor = String(i).padStart(3, '0');
+/* CONTOH (EDIT SENDIRI DI BAWAH INI) */
+{ nama:"001", desc:"Tas kemana-mana", link:"https://github.com/nihkoko/toko_nikoko/edit/main/index.html" },
+{ nama:"002", desc:"Deskripsi produk 002", link:"LINK_002" },
+{ nama:"003", desc:"Deskripsi produk 003", link:"LINK_003" },
+
+];
+
+/* AUTO TAMBAH SAMPAI 200 */
+for(let i=4; i<=200; i++){
+  let nomor = String(i).padStart(3,'0');
   data.push({
     nama: nomor,
     desc: "Deskripsi produk " + nomor,
-    link: "LINK_AFFILIASI_" + nomor
+    link: "LINK_" + nomor
   });
 }
 
-function tampilkan(list){
+function tampilkan(){
   const el = document.getElementById("produk");
   el.innerHTML="";
-  list.forEach(p=>{
+  data.forEach(p=>{
     el.innerHTML += `
     <div class="card">
       <h3>${p.nama}</h3>
@@ -120,12 +106,7 @@ function tampilkan(list){
   });
 }
 
-document.getElementById("search").addEventListener("keyup", function(){
-  let k = this.value.toLowerCase();
-  tampilkan(data.filter(p=>p.nama.includes(k)));
-});
-
-tampilkan(data);
+tampilkan();
 </script>
 
 </body>
